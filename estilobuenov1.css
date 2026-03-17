@@ -1,0 +1,226 @@
+:root {
+    --bg-color: #1e1e24; /* Un gris oscuro plano */
+    --card-bg: #2b2b36; /* Un gris un poco más claro para la tarjeta */
+    --text-primary: #ffffff;
+    --text-secondary: #aaaaaa;
+    --accent-color: #8b5cf6;
+    --border-color: #555555;
+    --input-bg: #1e1e24;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-primary);
+    min-height: 100vh;
+    height: 100%;
+}
+
+/* Navbar normal, sin desenfoque ni transparencias raras */
+.navbar {
+    padding: 1.5rem 3rem;
+    border-bottom: 2px solid var(--border-color);
+    background-color: var(--card-bg); /* Color sólido de fondo */
+}
+
+.navbar::after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.nav-links {
+    float: left;
+}
+
+.nav-links .nav-btn {
+    display: inline-block;
+    margin-right: 1.5rem;
+}
+
+.login-btn-container {
+    float: right;
+}
+
+.nav-btn.login-btn {
+    float: right;
+    border: 2px solid var(--border-color);
+}
+
+.nav-btn.login-btn:hover {
+    background-color: var(--text-primary);
+    color: var(--bg-color);
+}
+
+.nav-btn {
+    text-decoration: none;
+    color: var(--text-secondary);
+    font-weight: bold;
+    font-size: 0.9rem;
+    padding: 0.5rem 1rem;
+    transition: color 0.2s;
+    text-transform: uppercase;
+}
+
+.nav-btn:hover {
+    color: var(--text-primary);
+}
+
+.nav-btn.outline {
+    border: 2px solid var(--border-color);
+}
+
+.nav-btn.active {
+    color: var(--accent-color);
+}
+
+.container {
+    padding: 2rem;
+    min-height: calc(100vh - 80px);
+    position: relative;
+}
+
+/* Tarjeta con borde sólido destacable, sin sombras glow ni animaciones */
+.thank-you-card {
+    background-color: var(--card-bg);
+    padding: 2rem;
+    width: 100%;
+    max-width: 500px;
+    border: 3px solid var(--accent-color); /* Borde sólido liso */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+h2 {
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+    color: var(--text-primary);
+    text-align: left;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 10px;
+}
+
+.thank-you-form {
+    display: block;
+}
+
+.form-group {
+    display: block;
+    margin-bottom: 1.5rem;
+}
+
+.form-group label.tracking-label {
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+.custom-select-wrapper {
+    display: block;
+}
+
+/* Inputs básicos pero con colores oscuros */
+.custom-select {
+    width: 100%;
+    background-color: var(--input-bg);
+    border: 2px solid var(--border-color);
+    color: var(--text-primary);
+    padding: 0.75rem;
+    font-family: inherit;
+    font-size: 1rem;
+    display: block;
+}
+
+.custom-select:focus {
+    outline: none;
+    border-color: var(--accent-color);
+}
+
+.custom-select option {
+    background-color: var(--card-bg);
+    color: var(--text-primary);
+}
+
+.tracking-label {
+    font-size: 0.9rem;
+    font-weight: bold;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+}
+
+.custom-textarea {
+    width: 100%;
+    background-color: var(--input-bg);
+    border: 2px solid var(--border-color);
+    color: var(--text-primary);
+    padding: 0.75rem;
+    font-family: inherit;
+    font-size: 1rem;
+    resize: vertical;
+    min-height: 120px;
+    display: block;
+}
+
+.custom-textarea:focus {
+    outline: none;
+    border-color: var(--accent-color);
+}
+
+/* Botón plano de toda la vida sin degradados ni hover animado */
+.submit-btn {
+    background-color: var(--accent-color);
+    color: white;
+    border: 2px solid #6b46c1; /* Borde un poco más oscuro que el fondo */
+    padding: 1rem;
+    font-family: inherit;
+    font-weight: bold;
+    font-size: 1rem;
+    cursor: pointer;
+    display: block;
+    width: 100%;
+    margin-top: 1rem;
+}
+
+.submit-btn:hover {
+    background-color: #9d75ff; /* Simplemente cambia el color */
+}
+
+@media (max-width: 768px) {
+    .navbar {
+        padding: 1rem;
+        text-align: center;
+    }
+    
+    .nav-links, .nav-btn.login-btn {
+        float: none;
+        display: block;
+    }
+    
+    .nav-links .nav-btn {
+        display: inline-block;
+        margin: 0.5rem;
+    }
+
+    .nav-btn.login-btn {
+        display: inline-block;
+        margin-top: 1rem;
+    }
+
+    .container {
+        padding: 1rem;
+    }
+    
+    .thank-you-card {
+        padding: 1.5rem;
+        position: static;
+        transform: none;
+        margin: 2rem auto;
+    }
+}
