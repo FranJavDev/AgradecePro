@@ -15,8 +15,9 @@ function mostrar_datos()
     $db = conectar();
     $sql = 'SELECT * from alumnos';
     $resultado = $db->query($sql);
-    $fila = $resultado->fetch_array();
-    echo 'Nombre alumno: ' . $fila['nombre'];
+    while ($fila = $resultado->fetch_array()) {
+        echo 'Nombre alumno: ' . $fila['nombre'] . '<br>';
+    }
     $db->close();
 }
 mostrar_datos();
