@@ -101,6 +101,12 @@ body {
     color: var(--bg-color);
 }
 
+.nav-btn.login-btn.active {
+    background-color: transparent;
+    border-color: var(--text-primary);
+    color: var(--text-primary);
+}
+
 .container {
     padding: 2rem;
     min-height: calc(100vh - 80px);
