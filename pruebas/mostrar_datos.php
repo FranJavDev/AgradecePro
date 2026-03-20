@@ -17,6 +17,8 @@ function mostrar_datos()
     $resultado = $db->query($sql);
     while ($fila = $resultado->fetch_array()) {
         echo 'Nombre alumno: ' . $fila['nombre'] . '<br>';
+
+        // falta poner nombre e ID, en este orden [ID][NOMBRE]
     }
     $db->close();
 }
