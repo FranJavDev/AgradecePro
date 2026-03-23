@@ -14,7 +14,7 @@ function conectar()
 function mostrar_datos()
 {
     $db = conectar();
-    $sql = 'SELECT * from alumnos';
+    $sql = 'SELECT id, nombre from prueba_alumno';
     $resultado = $db->query($sql);
     $fila = $resultado->fetch_array();
     while ($fila) {
@@ -57,8 +57,8 @@ function mostrar_datos()
                         <select name="person" id="person" class="custom-select">
                             <option value="" disabled selected hidden>Selecciona una opción (ej: PEPITO)</option>
                             <?php
-                            mostrar_datos();
-                            ?>
+mostrar_datos();
+?>
                         </select>
                     </div>
                 </div>

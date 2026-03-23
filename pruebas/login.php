@@ -1,6 +1,7 @@
 <?php
 session_start();
-require 'pruebas/configdb.php';
+require 'configdb.php';
+
 function conectar()
 {
     $db = new mysqli(SERVIDOR, USUARIO, PASSWORD, BBDD);
@@ -11,22 +12,28 @@ function conectar()
     return $db;
 }
 
-
-
+$db = conectar();
 
 $username = $_POST["username"];
 $password = $_POST["password"];
 
-$sql = "SELECT idALumno FROM alumno
+// Login NO SEGURO (vulnerable a inyección SQL)
+$sql = "SELECT id, nombre FROM prueba_alumno
 WHERE username='" . $username . "'
-AND password='" . $password . "'";
-
-
-
+AND passwd='" . $password . "'";
 
 $result = $db->query($sql);
-if ($result->num_rows > 0) {
+
+if ($result && $result->num_rows > 0) {
     $fila = $result->fetch_array();
+    $_SESSION['id_usuario'] = $fila['id'];
+    $_SESSION['nombre_usuario'] = $fila['nombre'];
+    header("Location: ../bienvenida.php");
+    exit();
+}
+else {
+    header("Location: ../login_error.html");
+    exit();
 }
 
 ?>
