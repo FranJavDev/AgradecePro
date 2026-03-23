@@ -1,4 +1,31 @@
-<!DOCTYPE html>
+<?php
+require 'pruebas/configdb.php';
+function conectar()
+{
+    $db = new mysqli(SERVIDOR, USUARIO, PASSWORD, BBDD);
+    if ($db->connect_error) {
+        die("Error de conexión: " . $db->connect_error);
+    }
+    $db->set_charset('utf8');
+    return $db;
+}
+
+function mostrar_datos()
+{
+    $db = conectar();
+    $sql = 'SELECT * from alumnos';
+    $resultado = $db->query($sql);
+    $fila = $resultado->fetch_array();
+    while ($fila) {
+        echo '<option value="' . $fila["ID"] . '">' . $fila["nombre"] . '</option>';
+        $fila = $resultado->fetch_array();
+    }
+    $db->close();
+}
+?>
+
+
+
 <html lang="es">
 
 <head>
@@ -29,11 +56,10 @@
                         <select name="person" id="person" class="custom-select">
                             <option value="" disabled selected hidden>Selecciona una opción (ej: PEPITO)</option>
                             <?php
-                            require("pruebas/mostrar_datos.php");
                             mostrar_datos();
                             ?>
                         </select>
-                        </div>
+                    </div>
                 </div>
 
                 <div class="form-group">
