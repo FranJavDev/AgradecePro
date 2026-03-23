@@ -24,3 +24,4 @@ function mostrar_datos()
     $db->close();
     return $total_filas;
 }
+?>
