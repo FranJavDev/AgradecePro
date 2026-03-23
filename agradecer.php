@@ -17,7 +17,7 @@ function mostrar_datos()
     $resultado = $db->query($sql);
     $fila = $resultado->fetch_array();
     while ($fila) {
-        echo '<option value="' . $fila["ID"] . '">' . $fila["nombre"] . '</option>';
+        echo '<option value="' . $fila["id"] . '">' . $fila["nombre"] . '</option>';
         $fila = $resultado->fetch_array();
     }
     $db->close();
