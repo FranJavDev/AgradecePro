@@ -15,10 +15,10 @@ function mostrar_datos()
     $db = conectar();
     $sql = 'SELECT * from alumnos';
     $resultado = $db->query($sql);
-    while ($fila = $resultado->fetch_array()) {
-        echo 'Nombre alumno: ' . $fila['nombre'] . '<br>';
-
-        // falta poner nombre e ID, en este orden [ID][NOMBRE]
+    $fila = $resultado->fetch_array();
+    while ($fila) {
+        echo '<option value="' . $fila["ID"] . '">' . $fila["nombre"] . '</option>';
+        $fila = $resultado->fetch_array();
     }
     $db->close();
 }
