@@ -29,11 +29,19 @@
                         <select name="person" id="person" class="custom-select">
                             <option value="" disabled selected hidden>Selecciona una opción (ej: PEPITO)</option>
                             <?php
-                            require("pruebas/mostrar_datos.php");
-                            mostrar_datos();
+                            $db = conectar();
+                            $sql = 'SELECT * from alumnos';
+                            $resultado = $db->query($sql);
+                            $total_filas = $resultado->num_rows;
+                            $fila = $resultado->fetch_array();
+                            while ($fila) {
+                                echo '<option value="' . $fila["ID"] . '">' . $fila["nombre"] . '</option>';
+                                $fila = $resultado->fetch_array();
+                            }
+                            $db->close();
                             ?>
                         </select>
-                        </div>
+                    </div>
                 </div>
 
                 <div class="form-group">
