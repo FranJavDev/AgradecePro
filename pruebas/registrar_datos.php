@@ -10,5 +10,5 @@ function conectar()
 }
 function insertar()
 {
-
+    // pendiente de desarrollo en clase
 }
