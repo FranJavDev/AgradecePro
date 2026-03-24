@@ -20,8 +20,8 @@ session_start();
 <body>
     <nav class="navbar">
         <div class="nav-links">
-            <a href="index.html" class="nav-btn active">INICIO</a>
-            <a href="agradecimientos.html" class="nav-btn outline">AGRADECIMIENTOS</a>
+            <a href="index.php" class="nav-btn active">INICIO</a>
+            <a href="bienvenida.php" class="nav-btn outline">TABLÓN</a>
             <a href="agradecer.php" class="nav-btn outline">AGRADECER</a>
         </div>
         <a href="login.html" class="nav-btn login-btn">LOGIN</a>
@@ -33,7 +33,7 @@ session_start();
             <p style="color: var(--text-secondary); margin-bottom: 2rem; line-height: 1.6;">Bienvenido a la página
                 principal. Explora nuestros apartados de agradecimientos para dejar un mensaje especial o leer los de
                 otras personas.</p>
-            <a href="agradecer.html" class="submit-btn"
+            <a href="agradecer.php" class="submit-btn"
                 style="text-decoration: none; display: inline-block; text-align: center;">EMPEZAR</a>
         </div>
     </main>

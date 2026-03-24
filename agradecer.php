@@ -1,6 +1,12 @@
 <?php
 session_start();
+if (!isset($_SESSION['id_usuario'])) {
+    header("Location: login.html");
+    exit();
+}
+
 require 'pruebas/configdb.php';
+
 function conectar()
 {
     $db = new mysqli(SERVIDOR, USUARIO, PASSWORD, BBDD);
@@ -14,13 +20,18 @@ function conectar()
 function mostrar_datos()
 {
     $db = conectar();
-    $sql = 'SELECT id, nombre from prueba_alumno';
-    $resultado = $db->query($sql);
-    $fila = $resultado->fetch_array();
-    while ($fila) {
-        echo '<option value="' . $fila["id"] . '">' . $fila["nombre"] . '</option>';
-        $fila = $resultado->fetch_array();
+    $id_usuario = $_SESSION['id_usuario'];
+    
+    $sql = 'SELECT id, nombre_completo from alumnos WHERE id != ?';
+    $stmt = $db->prepare($sql);
+    $stmt->bind_param("i", $id_usuario);
+    $stmt->execute();
+    $resultado = $stmt->get_result();
+    
+    while ($fila = $resultado->fetch_assoc()) {
+        echo '<option value="' . $fila["id"] . '">' . htmlspecialchars($fila["nombre_completo"]) . '</option>';
     }
+    $stmt->close();
     $db->close();
 }
 ?>
@@ -40,16 +51,27 @@ function mostrar_datos()
 <body>
     <nav class="navbar">
         <div class="nav-links">
-            <a href="index.html" class="nav-btn outline">INICIO</a>
-            <a href="agradecimientos.html" class="nav-btn outline">AGRADECIMIENTOS</a>
-            <a href="agradecer.html" class="nav-btn active">AGRADECER</a>
+            <a href="bienvenida.php" class="nav-btn outline">INICIO / TABLÓN</a>
+            <a href="agradecer.php" class="nav-btn active">AGRADECER</a>
+            <a href="perfil.php" class="nav-btn outline">MI PERFIL</a>
         </div>
-        <a href="login.html" class="nav-btn login-btn">LOGIN</a>
+        <a href="logout.php" class="nav-btn login-btn">CERRAR SESIÓN</a>
     </nav>
 
     <main class="container">
         <div class="thank-you-card">
-            <h2>Quiero agradecer a</h2>
+            <h2>QUIERO AGRADECER A...</h2>
+
+            <?php
+            if (isset($_SESSION['mensaje_agradecer'])) {
+                echo '<div style="background-color: rgba(74, 222, 128, 0.2); border: 1px solid #4ade80; color: #4ade80; padding: 10px; border-radius: 8px; margin-bottom: 20px; text-align: center;">' . $_SESSION['mensaje_agradecer'] . '</div>';
+                unset($_SESSION['mensaje_agradecer']);
+            }
+            if (isset($_SESSION['error_agradecer'])) {
+                echo '<div style="background-color: rgba(239, 68, 68, 0.2); border: 1px solid #ef4444; color: #ef4444; padding: 10px; border-radius: 8px; margin-bottom: 20px; text-align: center;">' . $_SESSION['error_agradecer'] . '</div>';
+                unset($_SESSION['error_agradecer']);
+            }
+            ?>
 
             <form action="process.php" method="POST" class="thank-you-form">
                 <div class="form-group">
