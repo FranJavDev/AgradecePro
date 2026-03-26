@@ -3,5 +3,5 @@
 define('SERVIDOR', 'localhost');
 define('USUARIO', 'root');
 define('PASSWORD', '');
-define('BBDD', 'pruebas');
+define('BBDD', 'def1');
 ?>
