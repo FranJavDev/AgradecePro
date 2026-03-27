@@ -37,8 +37,9 @@ if ($result && $result->num_rows > 0) {
     $_SESSION['nombre_usuario'] = $fila['nombre'];
     header("Location: ../bienvenida.php");
     exit();
-} else {
-    header("Location: ../login_error.html");
+}
+else {
+    header("Location: ../components/login_error.html");
     exit();
 }
 

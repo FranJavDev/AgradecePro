@@ -1,6 +1,6 @@
 <?php
 session_start();
-require 'pruebas/configdb.php';
+require 'backend/configdb.php';
 function conectar()
 {
     $db = new mysqli(SERVIDOR, USUARIO, PASSWORD, BBDD);
@@ -14,7 +14,7 @@ function conectar()
 function mostrar_datos()
 {
     $db = conectar();
-    $sql = 'SELECT id, nombre from prueba_alumno';
+    $sql = 'SELECT equipo, nombre from alumnos';
     $resultado = $db->query($sql);
     $fila = $resultado->fetch_array();
     while ($fila) {
@@ -33,15 +33,14 @@ function mostrar_datos()
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Agradecimientos</title>
-    <link rel="stylesheet" href="estilobuenov2_experimental.css">
+    <link rel="stylesheet" href="components/estilobuenov2_experimental.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 </head>
 
 <body>
     <nav class="navbar">
         <div class="nav-links">
-            <a href="index.html" class="nav-btn outline">INICIO</a>
-            <a href="agradecimientos.html" class="nav-btn outline">AGRADECIMIENTOS</a>
+            <a href="index.php" class="nav-btn outline">INICIO</a>
             <a href="agradecer.html" class="nav-btn active">AGRADECER</a>
         </div>
         <a href="login.html" class="nav-btn login-btn">LOGIN</a>

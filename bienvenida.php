@@ -1,6 +1,6 @@
 <?php
 session_start();
-require 'pruebas/configdb.php';
+require 'backend/configdb.php';
 
 if (!isset($_SESSION['id_usuario'])) {
     header("Location: login.html");
@@ -37,7 +37,7 @@ $db->close();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bienvenido - <?php echo htmlspecialchars($datos['nombre']); ?></title>
-    <link rel="stylesheet" href="estilobuenov2_experimental.css">
+    <link rel="stylesheet" href="components/estilobuenov2_experimental.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
     <style>
         .user-data-list {
@@ -64,8 +64,7 @@ $db->close();
 <body>
     <nav class="navbar">
         <div class="nav-links">
-            <a href="index.html" class="nav-btn outline">INICIO</a>
-            <a href="agradecimientos.html" class="nav-btn outline">AGRADECIMIENTOS</a>
+            <a href="index.php" class="nav-btn outline">INICIO</a>
             <a href="agradecer.php" class="nav-btn outline">AGRADECER</a>
         </div>
         <a href="logout.php" class="nav-btn login-btn">CERRAR SESIÓN</a>

@@ -456,3 +456,24 @@ h2 {
 .delay-450 { animation-delay: 450ms; }
 .delay-600 { animation-delay: 600ms; }
 .delay-750 { animation-delay: 750ms; }
+
+.to-colleague-badge {
+    display: inline-flex;
+    align-items: center;
+    background: rgba(139, 92, 246, 0.15);
+    color: var(--text-primary);
+    padding: 0.4rem 1rem;
+    border-radius: 9999px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    margin-bottom: 1.5rem;
+    border: 1px solid rgba(139, 92, 246, 0.3);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.to-colleague-badge .badge-icon {
+    color: var(--accent-color);
+    font-weight: 600;
+    margin-right: 0.5rem;
+    font-size: 1rem;
+}

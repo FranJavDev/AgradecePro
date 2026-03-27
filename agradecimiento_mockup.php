@@ -6,6 +6,7 @@ $nombreJesuita = "Jose Jesuita";
 $fraseJesuita = "En todo amar y servir";
 $fotoJesuita = 'https://ui-avatars.com/api/?name=Jose+Jesuita&background=8b5cf6&color=fff&size=200&font-size=0.4'; // Placeholder profile
 $mensajeAgradecimiento = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Esto es una prueba 123 456 que locura estoy escribiendo un ejemplo";
+$nombreCompanero = "María García";
 
 ?>
 <!DOCTYPE html>
@@ -15,7 +16,7 @@ $mensajeAgradecimiento = "Lorem ipsum dolor sit amet, consectetur adipiscing eli
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Agradecimiento - Mockup</title>
-    <link rel="stylesheet" href="estilobuenov2_experimental.css">
+    <link rel="stylesheet" href="components/estilobuenov2_experimental.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Caveat:wght@500;600&display=swap" rel="stylesheet">
 </head>
 
@@ -28,6 +29,8 @@ $mensajeAgradecimiento = "Lorem ipsum dolor sit amet, consectetur adipiscing eli
             <div class="mockup-card">
                 <div class="mockup-left animate-fade-in-up delay-300">
                     <div class="jesuit-photo-wrapper">
+                        <!-- La funcion HTMLSPECIALCHARS la explico en bienvenida.php
+                         SE QUE NO SE HA DADO EN CLASE, pero es una buena practica -->
                         <img src="<?php echo htmlspecialchars($fotoJesuita); ?>" alt="Foto Jesuita" class="jesuit-photo">
                     </div>
                     <div class="jesuit-name-label animate-fade-in-up delay-450"><?php echo htmlspecialchars($nombreJesuita); ?></div>
@@ -35,6 +38,10 @@ $mensajeAgradecimiento = "Lorem ipsum dolor sit amet, consectetur adipiscing eli
                 </div>
                 
                 <div class="mockup-right animate-fade-in-up delay-750">
+                    <div class="to-colleague-badge">
+                        <span class="badge-icon">@</span>
+                        Para: <?php echo htmlspecialchars($nombreCompanero); ?>
+                    </div>
                     <div class="thank-you-text">
                         <?php echo nl2br(htmlspecialchars($mensajeAgradecimiento)); ?>
                     </div>
