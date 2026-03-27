@@ -1,5 +1,12 @@
 <?php
 session_start();
+
+// Comprobar si ya hay una sesión activa
+if (isset($_SESSION['equipo'])) {
+    header("Location: ../bienvenida.php");
+    exit();
+}
+
 require 'configdb.php';
 
 function conectar()
@@ -12,15 +19,17 @@ function conectar()
     return $db;
 }
 
+
+
 $db = conectar();
 
 $username = $_POST["username"];
 $password = $_POST["password"];
 
 // Login NO SEGURO (vulnerable a inyección SQL)
-$sql = "SELECT id, nombre FROM prueba_alumno
-WHERE username='" . $username . "'
-AND passwd='" . $password . "'";
+$sql = "SELECT equipo, nombre FROM alumnos
+WHERE usuario='" . $username . "'
+AND password='" . $password . "'";
 
 $result = $db->query($sql);
 
@@ -33,8 +42,8 @@ if ($result && $result->num_rows > 0) {
     // no funcionase correctamente, seria false y ya nisiquiera llega a comprobar el num_rows
     // No se puede llamar a num_rows si $result es NULL
     $fila = $result->fetch_array();
-    $_SESSION['id_usuario'] = $fila['id'];
-    $_SESSION['nombre_usuario'] = $fila['nombre'];
+    $_SESSION['equipo'] = $fila['equipo'];
+    $_SESSION['nombre'] = $fila['nombre'];
     header("Location: ../bienvenida.php");
     exit();
 }

@@ -2,12 +2,12 @@
 session_start();
 require 'backend/configdb.php';
 
-if (!isset($_SESSION['id_usuario'])) {
+if (!isset($_SESSION['equipo'])) {
     header("Location: login.html");
     exit();
 }
 
-$id_usuario = $_SESSION['id_usuario'];
+$equipo = $_SESSION['equipo'];
 
 $db = new mysqli(SERVIDOR, USUARIO, PASSWORD, BBDD);
 if ($db->connect_error) {
@@ -15,7 +15,7 @@ if ($db->connect_error) {
 }
 $db->set_charset('utf8');
 
-$sql = "SELECT id, nombre, username, nombreJesuita, img, frase, webAlumno FROM prueba_alumno WHERE id = " . $id_usuario;
+$sql = "SELECT equipo, nombre, usuario, nombreJesuita, foto, infoJesuita, web FROM alumnos WHERE equipo = '" . $equipo . "'";
 $result = $db->query($sql);
 
 if ($result && $result->num_rows > 0) {
@@ -67,7 +67,7 @@ $db->close();
             <a href="index.php" class="nav-btn outline">INICIO</a>
             <a href="agradecer.php" class="nav-btn outline">AGRADECER</a>
         </div>
-        <a href="logout.php" class="nav-btn login-btn">CERRAR SESIÓN</a>
+        <a href="components/logout.php" class="nav-btn login-btn">CERRAR SESIÓN</a>
     </nav>
 
     <main class="container">
@@ -76,7 +76,7 @@ $db->close();
             
             <div style="text-align: center; margin: 20px 0;">
                 <p style="font-size: 1.2rem; font-style: italic; color: #94a3b8; padding: 0 20px;">
-                    "<?php echo htmlspecialchars($datos['frase']); ?>"
+                    "<?php echo htmlspecialchars($datos['infoJesuita']); ?>"
                 </p>
             </div>
 
@@ -89,14 +89,14 @@ $db->close();
                  Esta función devuelve un string con estas conversiones realizadas.
                  
                  LO DEJO COMO ACLARACION PUES NO SE HA VISTO EN CLASE-->
-                <li><strong>Puesto (ID):</strong> <?php echo htmlspecialchars($datos['id']); ?></li>
-                <li><strong>Usuario:</strong> <?php echo htmlspecialchars($datos['username']); ?></li>
+                <li><strong>Equipo:</strong> <?php echo htmlspecialchars($datos['equipo']); ?></li>
+                <li><strong>Usuario:</strong> <?php echo htmlspecialchars($datos['usuario']); ?></li>
                 <li><strong>Referencia Jesuita:</strong> <?php echo htmlspecialchars($datos['nombreJesuita']); ?></li>
-                <li><strong>Web del Alumno:</strong> <?php echo htmlspecialchars($datos['webAlumno']); ?></li>
+                <li><strong>Web del Alumno:</strong> <?php echo htmlspecialchars($datos['web']); ?></li>
             </ul>
 
             <div style="text-align: center; margin-top: 30px;">
-                <a href="index.html" style="text-decoration: none;">
+                <a href="index.php" style="text-decoration: none;">
                     <button type="button" class="submit-btn" style="background-color: #3b82f6;">Ir a Inicio</button>
                 </a>
             </div>
