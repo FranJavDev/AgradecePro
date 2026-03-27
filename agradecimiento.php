@@ -1,8 +1,19 @@
 <?php
-include 'backend/configdb.php';
-$_GET["id"] = 2; // en este caso es un ejemplo de ID 2 para hacer las pruebas
+//include '../conexion.php'; // para enviar
+include 'backend/configdb.php'; // para pruebas locales
 
-
+// este GET es de DEMO
+// $_GET["id"] = 2; // en este caso es un ejemplo de ID 2 para hacer las pruebas
+function conectar()
+{
+    $db = new mysqli(SERVIDOR, USUARIO, PASSWORD, BBDD);
+    if ($db->connect_error) {
+        die("Error de conexión: " . $db->connect_error);
+    }
+    $db->set_charset('utf8');
+    return $db;
+}
+$conexion = conectar();
 // Obtiene el mensaje de agradecimiento, el emisor y el receptor del mensaje
 $sql = "select mensaje, idEmisor, idReceptor from agradecimientos
       where idAgradecimiento=" . $_GET["id"] . ";";
@@ -58,7 +69,8 @@ $receptor = $fila["nombre"];
                     <div class="jesuit-photo-wrapper">
                         <!-- La funcion HTMLSPECIALCHARS la explico en bienvenida.php
                          SE QUE NO SE HA DADO EN CLASE, pero es una buena practica -->
-                        <img src="<?php echo htmlspecialchars($fotoJesuita); ?>" alt="Foto Jesuita" class="jesuit-photo">
+
+                        <img src="https://www.jesuits.global/sj_files/2020/05/anchieta.jpg" alt="Foto Jesuita" class="jesuit-photo">
                     </div>
                     <div class="jesuit-name-label animate-fade-in-up delay-450"><?php echo htmlspecialchars($jesuita); ?></div>
                     <div class="jesuit-phrase animate-fade-in-up delay-600"><?php echo htmlspecialchars($infoJesuita); ?></div>
