@@ -1,0 +1,26 @@
+name: Despliegue FTP
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  web-deploy:
+    name: Deploy
+    runs-on: ubuntu-latest
+    steps:
+      - name: 🚚 Obtener código del repositorio
+        uses: actions/checkout@v4
+
+      - name: 📂 Subir archivos vía FTP
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          server-dir: /agradece/
+          exclude: |
+            **/.git*
+            **/.git*/**
+            **/backend/configdb.php
